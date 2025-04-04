@@ -4,6 +4,7 @@ This project focuses on detecting potential money laundering patterns using MySQ
 💼 Anti-Money Laundering (AML) Analysis Using MySQL
  ### Project Overview 📌
 This project demonstrates a robust, SQL-based Anti-Money Laundering (AML) detection system, built from scratch using MySQL and synthetically generated financial data. The goal was to simulate real-world banking behavior and apply AML regulations to uncover suspicious activities such as smurfing, multi-hop transactions, high-risk customers, and unusual geographic flows.
+#### Command Line	was Used to bulk load data efficiently into MySQL
 
 ⚠️ Note: The data used in this project was synthetically created using ChatGPT assistance, ensuring privacy and regulatory safety. As a result, time-bound queries may not yield real-time trends.
 
