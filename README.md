@@ -104,9 +104,11 @@ Designed for financial analysts, auditors, and AML compliance teams, the system 
 ---
 
 > Developed by: Sneha 👩‍💻 | April 2025  
-> ## Note: This project uses synthetic data for demonstration purposes only.*
+> ### Note: This project uses synthetic data for demonstration purposes only.*
 
 
 
 ### Contributions 🤝 
 This is a personal project. 
+
+## Powe BI Project Link --> https://tinyurl.com/37yxc4cb
