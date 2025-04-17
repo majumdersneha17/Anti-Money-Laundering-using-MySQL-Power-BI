@@ -37,7 +37,7 @@ The system leverages **SQL views, recursive logic**, and **configurable risk par
 Flags transactions with amounts between **$9,000–$9,999**, indicating attempts to evade reporting thresholds.
 
 ### 2️⃣ **High_Risk_Customers**
-Identifies customers whose total transactions exceed **$100,000** over the observed period.
+Identifies customers whose total transactions exceed **$2,500,000** over the observed period.
 
 ### 3️⃣ **Smurfing_Detection**
 Detects structuring behavior by identifying:
