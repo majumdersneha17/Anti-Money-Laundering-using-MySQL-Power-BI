@@ -52,6 +52,11 @@ Recursive CTE logic to trace money flow through multiple accounts:
 ### 5️⃣ **Cross_Location_Transactions**
 Analyzes geographic anomalies by flagging transactions conducted from locations that differ from the customer's registered location.
 
+### ⏰ **Temporal Anomalies**
+- High concentration of suspicious transactions during non-business hours, especially around 3 to 4 AM.
+
+- Weekends especially **Fridays** showed unusually higher activity volumes, pointing toward attempts to avoid internal scrutiny.
+
 ---
 
 ## 📊 Power BI Integration
@@ -111,4 +116,4 @@ Designed for financial analysts, auditors, and AML compliance teams, the system 
 ### Contributions 🤝 
 This is a personal project. 
 
-## Powe BI Project Link --> https://tinyurl.com/37yxc4cb
+## Power BI Project Link --> https://tinyurl.com/37yxc4cb
