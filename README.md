@@ -1,100 +1,112 @@
 # Anti-Money-Laundering-using-MySQL-Power-BI
 This project focuses on detecting potential money laundering patterns using MySQL as the primary analytical tool. The goal is to explore how SQL-based logic can be applied to uncover unusual fund movements and transactional behavior, leveraging synthetic financial data.
+ 
+# 🕵️ Anti-Money Laundering (AML) Analysis using MySQL & Power BI
 
-💼 Anti-Money Laundering (AML) Analysis Using MySQL
- ### Project Overview 📌
-This project demonstrates a robust, SQL-based Anti-Money Laundering (AML) detection system, built from scratch using MySQL and synthetically generated financial data. The goal was to simulate real-world banking behavior and apply AML regulations to uncover suspicious activities such as smurfing, multi-hop transactions, high-risk customers, and unusual geographic flows.
-#### Command Line	was Used to bulk load data efficiently into MySQL
+## 📌 Project Summary
 
-⚠️ Note: The data used in this project was synthetically created using ChatGPT assistance, ensuring privacy and regulatory safety. As a result, time-bound queries may not yield real-time trends.
+This project presents an end-to-end Anti-Money Laundering (AML) analysis framework, built using **MySQL** for data modeling and **Power BI (Import Mode)** for interactive visualizations. The solution is designed to identify suspicious financial activities such as:
 
- ### Objectives 🎯
-✅ Detect suspicious transactions and structuring behavior (smurfing)
+- Structuring (Smurfing)
+- Multi-hop money flows
+- High-risk customer transactions
+- Cross-location anomalies
 
-✅ Identify high-risk customers based on transaction patterns
+The system leverages **SQL views, recursive logic**, and **configurable risk parameters** to simulate and visualize real-world AML detection scenarios.
 
-✅ Analyze cross-location and multi-hop transactions to detect laundering networks
+---
 
-✅ Build dynamic, efficient SQL queries using advanced concepts like CTEs, aggregations, and window functions
+## 🧱 Database Design
 
-### Database Schema 🧱
-customers_final – Contains customer details (ID, location, etc.)
+### 🗂️ Core Tables
 
-transactions – Holds transactional data including sender, receiver, amount, and date
+- **Customers_final**: Stores KYC-verified customer information.
+- **Transactions**: Records all financial transactions (SenderID, ReceiverID, Amount, Date, Mode, Location).
+- **Risk_Parameters**: Configurable thresholds for defining suspicious activities (e.g., smurfing limits, transaction caps).
 
-risk_parameters – Stores thresholds for flagging suspicious behavior
+### ⚙️ Optimization
 
-Indexed on CustomerID, SenderID, ReceiverID, and Date for optimized query performance.
+- Indexes applied on `CustomerID`, `SenderID`, `ReceiverID`, and `Date` for performance in query execution.
+- Time-based simulation included to spread data uniformly across the last 12 months for trend analysis.
 
-### Key AML Analyses 📊 
-🔹 Suspicious Transactions
-Transactions just under the regulatory threshold (₹9000–₹9999) flagged using dynamic parameters.
+---
 
-Helps identify intentional structuring to avoid scrutiny.
+## 🔍 AML Detection Logic (SQL Views)
 
-🔹 High-Risk Customers
-Aggregated total transaction amount per customer.
+### 1️⃣ **Suspicious_Transactions**
+Flags transactions with amounts between **$9,000–$9,999**, indicating attempts to evade reporting thresholds.
 
-Customers exceeding ₹100,000 flagged as high-risk.
+### 2️⃣ **High_Risk_Customers**
+Identifies customers whose total transactions exceed **$100,000** over the observed period.
 
-🔹 Smurfing Detection
-Detects small, frequent transactions summing over ₹150,000 in a rolling 30-day window.
+### 3️⃣ **Smurfing_Detection**
+Detects structuring behavior by identifying:
+- >3 transactions within 30 days
+- Cumulative total exceeding **$150,000**
 
-Implemented using window functions to simulate time-based tracking.
+### 4️⃣ **Multi_Hop_Transactions**
+Recursive CTE logic to trace money flow through multiple accounts:
+- Identifies transactions that return to the original sender within **±20%** of the initial value
+- Useful for detecting layering behavior in complex fraud networks
 
-🔹 Cross-Location Transfers
-Flags large transactions (>₹80,000) where sender and receiver are in different locations.
+### 5️⃣ **Cross_Location_Transactions**
+Analyzes geographic anomalies by flagging transactions conducted from locations that differ from the customer's registered location.
 
-Reveals possible cross-border laundering activity.
+---
 
-🔹 Multi-Hop Transaction Detection
-Tracks recursive money flows through multiple intermediaries.
+## 📊 Power BI Integration
 
-Flags cycles where money returns to origin with minimal deviation (±20%).
+The SQL views were **imported into Power BI using Import Mode** for optimized performance and full DAX functionality. Visuals were built around these views to create an interactive AML dashboard:
 
-Implemented via recursive CTEs – ideal for tracing circular laundering schemes.
+- Suspicious Transactions with slicers, mode breakdown, and trend line
+- High-Risk Customers with total transaction values and customer risk profiling
+- Smurfing Patterns with frequency maps and threshold-based detection
+- Multi-Hop Transactions visualized via Sankey chart
+- Cross-Location analysis with maps, tables, and bar charts
 
-### Key Insights 💡 
-Detected patterns resembling real-world AML threats like smurfing and layering.
+Each section of the dashboard highlights behavior flagged under AML guidelines and supports visual drilldown for deeper insights.
 
-Highlighted accounts with disproportionate transaction volumes.
+---
 
-Demonstrated the effectiveness of SQL in modeling AML rules dynamically.
+## 🔑 Key Findings
 
-Proved multi-hop tracing can unveil hidden money trails.
+- Multiple transactions clustered around reporting thresholds (~$9,000–$9,999) suggest potential evasion attempts.
+- High-risk customers transacted over $100,000 in short windows — indicating placement or layering behavior.
+- Smurfing patterns observed in accounts with frequent small transactions aggregating above regulatory thresholds.
+- Multi-hop transaction loops detected where money flows back to the origin within ±20% value — a classic laundering red flag.
+- Cross-location anomalies identified transactions initiated from locations inconsistent with customer registrations, raising questions around identity misuse or proxy access.
 
-### Role Played 🧑‍💼 
-Position: AML Data Analyst
-Responsibilities:
+---
 
-Designing and writing optimized SQL queries
+## 👩‍💼 Analyst Role Description
 
-Generating actionable financial insights
+**Role**: AML Data Analyst (Enterprise Simulation)
 
-Creating analytical views for stakeholders
+**Responsibilities**:
+- Develop SQL logic for rule-based AML detection
+- Monitor smurfing, layering, and geographic red flags
+- Import and model data in Power BI for advanced reporting
+- Create executive-level dashboards to communicate key risk insights
+- Recommend remediation or review based on analytical findings
 
-Ensuring alignment with AML compliance frameworks
+**Tech Stack**:  
+`MySQL` | `Power BI (Import Mode)` | `DAX` | `Sankey/Map Visuals` | `SQL Views`
 
-### Key Skills Applied:
 
-SQL (advanced)
+---
 
-Financial risk modeling
+## ✅ Conclusion
 
-Recursive CTEs & window functions
+This AML project simulates an enterprise-grade risk monitoring solution using open-source SQL and Power BI. The analysis surfaces hidden behavioral risks using a combination of rule-based thresholds and recursive transaction tracing.
 
-Fraud detection logic
+Designed for financial analysts, auditors, and AML compliance teams, the system demonstrates how robust data modeling and visualization can support fraud prevention, due diligence, and regulatory reporting.
 
-### Project Status 🚧
+---
 
-✅ SQL-based analysis complete
-🔄 Power BI dashboard under development (to be uploaded soon)
+> Developed by: Sneha 👩‍💻 | April 2025  
+> ## Note: This project uses synthetic data for demonstration purposes only.*
 
-### What’s Next? 🔮 
--Integration of Power BI dashboards for visualizing:
--Suspicious transaction trends
--Risk scoring heatmaps
--Interactive tracing of fund flows
+
 
 ### Contributions 🤝 
-This is an ongoing personal project. 
+This is a personal project. 
